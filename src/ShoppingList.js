@@ -4,7 +4,8 @@ export default class GroceryList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listItems: ['Banana', 'Apple', 'Orange']
+            listItems: [],
+            message: 'There are no items on your list.'
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -18,6 +19,7 @@ export default class GroceryList extends Component {
                 newItem
             ]
         });
+        document.getElementById('data').value='';
     }
     render() {
         return (
@@ -26,13 +28,13 @@ export default class GroceryList extends Component {
                 <hr/>
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="grocery-item">Grocery Item</label>
-                        <input type="text" className="form-control" id="data"/>
+                        <label htmlFor="grocery-item">Add grocery item below:</label>
+                        <input type="text" className="form-control" id="data" placeholder="Add item here..."/>
                     </div>
-                    <input type="submit" value="Submit"/>
+                    <input type="submit" value="Add Item"/>
                 </form>
-                <br/>
-                <div className="display text-left">
+                <hr/>
+                <div className="display">
                     {
                         this.state.listItems.map((item, index) => {
                             return <p style={{paddingLeft: 3 + '%'}} key={index}>{item}</p>
