@@ -26,7 +26,7 @@ export default class GroceryList extends Component {
     resetForm() {
         this.setState({
             listItems: [],
-            message: 'Your list as been reset.  Please add new items.'
+            message: 'Your list has been reset.  Please add new items.'
         });
     }
     render() {
