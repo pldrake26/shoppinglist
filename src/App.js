@@ -5,7 +5,7 @@ import ShoppingList from './ShoppingList.js';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <div className="col-sm-6">
             <ShoppingList />
         </div>

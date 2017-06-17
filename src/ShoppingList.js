@@ -44,11 +44,13 @@ export default class GroceryList extends Component {
                 <hr/>
                 <p className="text-danger">{this.state.message}</p>
                 <div className="display">
-                    {
-                        this.state.listItems.map((item, index) => {
-                            return <p style={{paddingLeft: 3 + '%'}} key={index}>{item}</p>
-                        })
-                    }
+                    <ul>
+                        {
+                            this.state.listItems.map((item, index) => {
+                                return <li key={index}>{item}</li>
+                            })
+                        }
+                    </ul>
                 </div>
                 <hr/>
                 {
