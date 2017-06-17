@@ -8,18 +8,26 @@ export default class GroceryList extends Component {
             message: 'There are no items on your list.'
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.resetForm = this.resetForm.bind(this);
     }
     handleSubmit(event) {
         event.preventDefault();
-        const newItem = document.getElementById('data').value;
+        const newItem = event.target.data.value;
         console.log(newItem);
         this.setState({
             listItems: [
                 ...this.state.listItems,
                 newItem
-            ]
+            ],
+            message: ''
         });
-        document.getElementById('data').value='';
+        document.getElementById('data').value = '';
+    }
+    resetForm() {
+        this.setState({
+            listItems: [],
+            message: 'Your list as been reset.  Please add new items.'
+        });
     }
     render() {
         return (
@@ -29,11 +37,12 @@ export default class GroceryList extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="grocery-item">Add grocery item below:</label>
-                        <input type="text" className="form-control" id="data" placeholder="Add item here..."/>
+                        <input type="text" className="form-control" name="data" id="data" placeholder="Add item here..."/>
                     </div>
-                    <input type="submit" value="Add Item"/>
+                    <input type="submit" className="btn btn-success" value="Add Item"/>
                 </form>
                 <hr/>
+                <p className="text-danger">{this.state.message}</p>
                 <div className="display">
                     {
                         this.state.listItems.map((item, index) => {
@@ -41,6 +50,10 @@ export default class GroceryList extends Component {
                         })
                     }
                 </div>
+                <hr/>
+                {
+                    this.state.listItems.length > 0 ? <button className="btn btn-danger pull-right" onClick={this.resetForm}>Reset form</button> : ''
+                }
             </div>
         );
     }
