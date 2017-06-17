@@ -5,7 +5,7 @@ export default class GroceryList extends Component {
         super(props);
         this.state = {
             listItems: [],
-            message: 'There are no items on your list.'
+            message: 'There are no grocery items on your list.'
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.resetForm = this.resetForm.bind(this);
@@ -26,7 +26,7 @@ export default class GroceryList extends Component {
     resetForm() {
         this.setState({
             listItems: [],
-            message: 'Your list has been reset.  Please add new items.'
+            message: 'Your grocery list has been reset.  Please add new items.'
         });
     }
     render() {
