@@ -13,7 +13,6 @@ export default class GroceryList extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const newItem = event.target.data.value;
-        console.log(newItem);
         this.setState({
             listItems: [
                 ...this.state.listItems,
@@ -37,7 +36,7 @@ export default class GroceryList extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="grocery-item">Add grocery item below:</label>
-                        <input type="text" className="form-control" name="data" id="data" placeholder="Add item here..."/>
+                        <input type="text" className="form-control" name="data" id="data" placeholder="Add item here..." required/>
                     </div>
                     <input type="submit" className="btn btn-success" value="Add Item"/>
                 </form>
@@ -54,7 +53,7 @@ export default class GroceryList extends Component {
                 </div>
                 <hr/>
                 {
-                    this.state.listItems.length > 0 ? <button className="btn btn-danger pull-right" onClick={this.resetForm}>Reset form</button> : ''
+                    this.state.listItems.length > 0 ? <button type="button" className="btn btn-danger pull-right" onClick={this.resetForm}>Reset form</button> : ''
                 }
             </div>
         );
