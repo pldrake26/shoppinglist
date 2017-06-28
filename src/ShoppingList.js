@@ -5,8 +5,7 @@ export default class GroceryList extends Component {
         super(props);
         this.state = {
             listItems: [],
-            message: 'There are no grocery items on your list.',
-            button: <span className="glyphicon glyphicon-remove pull-right" onClick={this.deleteItem} aria-hidden="true"></span>
+            message: 'There are no grocery items on your list.'
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
@@ -32,8 +31,18 @@ export default class GroceryList extends Component {
         }
         document.getElementById('data').value = '';
     }
-    deleteItem() {
-        console.log('Delete item button clicked!');
+    deleteItem(item) {
+        const newListItems = this.state.listItems.filter((listItem) => {
+            return listItem !== item;
+        });
+        this.setState({
+            listItems: [...newListItems]
+        });
+        if (newListItems.length === 0) {
+            this.setState({
+                message: 'You have deleted all your grocery items.  Please add more items.'
+            });
+        }
     }
     resetForm() {
         this.setState({
@@ -42,6 +51,7 @@ export default class GroceryList extends Component {
         });
     }
     render() {
+        const {listItems} = this.state;
         return (
             <div>
                 <h1 className="text-info">My Grocery List</h1>
@@ -58,8 +68,8 @@ export default class GroceryList extends Component {
                 <div className="display">
                     <ul>
                         {
-                            this.state.listItems.map((item, index) => {
-                                return <li key={index}>{item} {this.state.button}</li>
+                            listItems.map((item, index) => {
+                                return <li key={index}>{item}<span className="glyphicon glyphicon-remove pull-right" onClick={(e) => this.deleteItem(item)} aria-hidden="true"></span></li>
                             })
                         }
                     </ul>
